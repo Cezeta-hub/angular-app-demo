@@ -10,6 +10,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:CEZ.LoymarkTechTest.WebAPI.Features.History.HistoryController.GetHistoryPaginated(CEZ.LoymarkTechTest.WebAPI.GetHistoryPaginatedQuery.Query)">
+            <summary>
+            Get History paginated
+            </summary>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
         <member name="M:CEZ.LoymarkTechTest.WebAPI.Features.Users.UsersController.GetUsersPaginated(CEZ.LoymarkTechTest.WebAPI.GetUsersPaginatedQuery.Query)">
             <summary>
             Get Users paginated

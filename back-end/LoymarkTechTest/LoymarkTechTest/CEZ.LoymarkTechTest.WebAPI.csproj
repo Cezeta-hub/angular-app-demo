@@ -30,11 +30,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\History\" />
+    <None Include="..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\.editorconfig" Link=".editorconfig" />
+    <Folder Include="Features\History\Commands\" />
   </ItemGroup>
 
 </Project>
