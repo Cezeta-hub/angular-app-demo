@@ -75,23 +75,23 @@ export class NewUserPageComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void { this.subscriptions.unsubscribe(); }
 
-    private async getUser(id: number) {
+    private getUser(id: number) {
         this.loading = true;
-        let data = await lastValueFrom(this.usersService.GetUserById(id));
-        if (data) {
-            this.user = data.Result;
-            this.form.setValue({
-                name: this.user.Name,
-                surname: this.user.Surname,
-                email: this.user.Email,
-                birthday: new Date(this.user.Birthday),
-                telephone: this.user.Telephone,
-            });
-            if (this.countryOptions.length > 0) 
-                this.selectedCountry = this.user.Country?.Id ? this.user?.Country.Id : 0;
-            this.wishesContact = this.user.WishesToBeContacted;
-        }
-        this.loading = false;
+        this.usersService.GetUserById(id).toPromise().then((data) => {
+            if (data) {
+                this.user = data.Result;
+                this.form.setValue({
+                    name: this.user.Name,
+                    surname: this.user.Surname,
+                    email: this.user.Email,
+                    birthday: new Date(this.user.Birthday),
+                    telephone: this.user.Telephone,
+                });
+                if (this.countryOptions.length > 0) 
+                    this.selectedCountry = this.user.Country?.Id ? this.user?.Country.Id : 0;
+                this.wishesContact = this.user.WishesToBeContacted;
+            }
+        }).finally(() => this.loading = false);
     }
     private async getCountryOptions() {
         let data = await lastValueFrom(this.usersService.GetCountries());
@@ -103,7 +103,6 @@ export class NewUserPageComponent implements OnInit, OnDestroy {
     }
 
     public async onSave (e:any) {
-        debugger;
         this.saving = true;
         let payload = {
             Id: this.editMode ? this.user.Id : undefined,
@@ -124,7 +123,6 @@ export class NewUserPageComponent implements OnInit, OnDestroy {
         this.saving = false;
         this.router.navigateByUrl('/tech-test/users');
     }
-
     public onCancel () {
         if(this.form.dirty)
             this.confirmationService.confirm({

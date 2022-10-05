@@ -81,7 +81,8 @@
               <td>{{user.WishesToBeContacted ? 'Yes' : 'No'}}</td>
               <td style="width: 10rem">
                 <div style="display: flex; justify-content: space-evenly;" >
-                  <p-button aria-label="Edit" aria-label="Edit User" class="p-button-sm" icon="pi pi-pencil" (onClick)="editUser(user)"></p-button>
+                  <p-button aria-label="Check History" class="p-button-sm" icon="pi pi-history" (onClick)="checkHistory(user.Id)"></p-button>
+                  <p-button aria-label="Edit User" class="p-button-sm" icon="pi pi-pencil" (onClick)="editUser(user)"></p-button>
                   <p-button aria-label="Delete User" tooltipPosition="left" class="p-button-sm p-button-danger" icon="pi pi-trash" (onClick)="deleteUser(user.Id)"></p-button>
                 </div>
               </td>

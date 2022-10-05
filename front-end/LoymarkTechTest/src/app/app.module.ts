@@ -12,7 +12,6 @@ import { MegaMenuModule } from 'primeng/megamenu';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { SharedModule } from './modules/shared/shared.module';
 import { ToolbarModule } from 'primeng/toolbar';
-// import { HttpConfigInterceptor } from './http-config.interceptor';
 import { SidebarModule } from 'primeng/sidebar';
 import { ImageModule } from 'primeng/image';
 
@@ -37,7 +36,6 @@ import { ImageModule } from 'primeng/image';
   ],
   providers: [
     MessageService,
-    // {provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true},
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]

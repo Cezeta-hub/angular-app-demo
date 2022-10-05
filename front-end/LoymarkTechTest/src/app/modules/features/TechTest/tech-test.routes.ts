@@ -1,4 +1,5 @@
 import { Routes } from "@angular/router";
+import { HistoryPageComponent } from "./pages/History/history-page/history-page.component";
 import { NewUserPageComponent } from "./pages/Users/new-user-page/new-user-page.component";
 import { UsersPageComponent } from "./pages/Users/users-page/users-page.component";
 
@@ -26,7 +27,6 @@ export const techTestRoutes: Routes = [
           title: 'New User'
         }
       },
-
       {
         path: 'edit/:id',
         component: NewUserPageComponent,
@@ -34,6 +34,23 @@ export const techTestRoutes: Routes = [
           title: 'User [id]'
         }
       }
+    ]
+  },
+  {
+    path: 'history',
+    data: {
+      title: 'History'
+    },
+    children: [
+      {
+        path: '',
+        component: HistoryPageComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: ':id',
+        component: HistoryPageComponent,
+      },
     ]
   }
 ]

@@ -1,0 +1,76 @@
+<page-container title="History">
+  <loader-wrapper [loading]="loading" loadingText="Loading history...">
+    <p-table
+      dataKey="id"
+      [value]="historyEntries"
+      [paginator]="true"
+      [lazy]="true"
+      [rows]="filters.PageSize"
+      [totalRecords]="totalPages"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="Showing {first} of {totalRecords} pages"
+      (onLazyLoad)="search($event)"
+      responsiveLayout="scroll"
+      [sortField]="filters.OrderBy"
+      [sortOrder]="filters.Direction"
+    >
+      <ng-template pTemplate="caption">
+        <p-accordion>
+          <p-accordionTab header="Filters">
+            <div style="position: relative">
+              <div style="position: absolute; top: 0; right: 0;">
+                <p-button label="Reset Filters" (onClick)="resetFilters()"></p-button>
+              </div>
+              <div class="grid">
+                <div class="col-6">
+                  <div class="row" class="form-field-label">User </div>
+                  <div class="row">
+                    <p-inputNumber
+                      [(ngModel)]="filters.UserId"
+                      [useGrouping]="false"
+                      placeholder="Filter by User Id..."
+                      (onBlur)="search()"
+                    ></p-inputNumber>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </p-accordionTab>
+        </p-accordion>
+      </ng-template>
+      <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="Id" style="width: 5rem">Id <p-sortIcon field="Id"></p-sortIcon></th>
+            <th pSortableColumn="ChangeType">Action <p-sortIcon field="ChangeType"></p-sortIcon></th>
+            <th>User Full Name </th>
+            <th pSortableColumn="ChangeDate">Change Date<p-sortIcon field="ChangeDate"></p-sortIcon></th>
+          </tr>
+      </ng-template>
+        <ng-template pTemplate="body" let-entry>
+          <ng-template [ngIf]="loading">
+            <tr>
+              <td style="width: 3rem"><p-skeleton></p-skeleton></td>
+              <td><p-skeleton></p-skeleton></td>
+              <td><p-skeleton></p-skeleton></td>
+              <td><p-skeleton></p-skeleton></td>
+            </tr>
+          </ng-template>
+          <ng-template [ngIf]="!loading">
+            <tr class="table-row">
+              <td style="width: 3rem">{{entry.Id}}</td>
+              <td>{{entry.ChangeType}}</td>
+              <td>{{entry.UserFullName}}</td>
+              <td>{{entry.ChangeDate | date: "YYYY-MM-dd"}}</td>
+          </tr>
+        </ng-template>
+      </ng-template>
+      <ng-template pTemplate="emptymessage" [ngIf]="!loading">
+        <tr>
+          <td colspan="9" style="text-align: center;">
+            No History entries found.
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </loader-wrapper>
+</page-container>

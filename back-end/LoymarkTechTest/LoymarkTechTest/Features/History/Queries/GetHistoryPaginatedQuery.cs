@@ -42,7 +42,6 @@ namespace CEZ.LoymarkTechTest.WebAPI
             public DateTime ChangeDate { get; set; }
             public int UserId { get; set; }
             public string UserFullName { get; set; }
-            
         }
         
         public class Validator : AbstractValidator<Query>
@@ -69,7 +68,8 @@ namespace CEZ.LoymarkTechTest.WebAPI
                 public async Task<QueryResult> Handle(Query request, CancellationToken cancellationToken)
                 {
                     var results = _db.Histories.Include(x => x.User).Where(x => true);
-                    
+                    var changeTypes = _db.ChangeTypes.ToList();
+
                     if (request.UserId != null)
                     {
                         results = results.Where(x => x.UserId == request.UserId);
@@ -88,7 +88,7 @@ namespace CEZ.LoymarkTechTest.WebAPI
                         HistoryDTO user = new HistoryDTO
                         {
                             Id = x.Id,
-                            ChangeType = ((ChangeTypeEnum)x.ChangeType).ToString(),
+                            ChangeType = changeTypes.Find(ct => ct.Id == x.ChangeType).Name,
                             PrevValue = x.PrevValue,
                             CurrValue = x.CurrValue,
                             ChangeDate = x.ChangeDate,

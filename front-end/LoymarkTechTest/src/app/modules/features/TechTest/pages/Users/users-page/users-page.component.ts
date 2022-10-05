@@ -44,28 +44,28 @@ export class UsersPageComponent implements OnInit {
 
     this.users = [];
     let payload: UsersSearchPayload = {...this.filters};
-    let data = await lastValueFrom(this.usersService.GetUsers(payload));
-    if (data) {
-        this.totalObjects = data.Result.TotalObjects;
-        this.totalPages = data.Result.TotalPages;
-        this.users = [...data.Result.Result];
-    } 
-    this.loading = false;
+    this.usersService.GetUsers(payload).toPromise().then((data) => {
+      if (data) {
+          this.totalObjects = data.Result.TotalObjects;
+          this.totalPages = data.Result.TotalPages;
+          this.users = [...data.Result.Result];
+      } 
+    }).finally(() => this.loading = false);
   }
 
-  public addNewUser (e:any) {
+  public addNewUser(e:any) {
     let navigationExtras : NavigationExtras = {
       relativeTo: this.route,
     }
     this.router.navigate(['new'], navigationExtras);
   }
-  public editUser (user: User) {
+  public editUser(user: User) {
     let navigationExtras : NavigationExtras = {
       relativeTo: this.route,
     }
     this.router.navigate([`edit/${user.Id}`], navigationExtras);
   }
-  public deleteUser (id: number){
+  public deleteUser(id: number) {
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete the User?',
       accept: async () => {
@@ -74,6 +74,10 @@ export class UsersPageComponent implements OnInit {
       }
     });
   }
+  public checkHistory(id: number) {
+    this.router.navigateByUrl('/tech-test/history/'+id);
+  }
+
   public resetFilters(): void {
     this.filters = {...this.defaultFilters};
     this.search();
