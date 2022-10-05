@@ -1,0 +1,14 @@
+</// ------------------------------------------- ///>
+		  DATABASE CREATION	
+</// ------------------------------------------- ///>
+
+This project's database is created and managed using EntityFramework.
+
+This means that we will create all the tables and fill in the seeded data automatically using
+the different migrations set on the back-end side. For now we only need to create an empty DB
+named "CEZ_LoymarkTechTest" on your local server.
+
+A simple "CREATE DATABASE CEZ_LoymarkTechTest;" will suffice (a sql script file is also provided,
+for ease of use).
+
+After that is done, go to the backend to continue the configuration.

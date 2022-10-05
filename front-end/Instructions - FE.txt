@@ -1,0 +1,12 @@
+</// ------------------------------------------- ///>
+		  FRONTEND STARTUP	
+</// ------------------------------------------- ///>
+
+Open the folder "LoymarkTechTest" with VSCode (or similar).
+
+Open the console (in VSCode, Ctrl+Ñ).
+
+Run "npm i".
+
+To start up the project, run "ng serve". The project should be accesible at
+http://localhost:4200/

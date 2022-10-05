@@ -1,0 +1,19 @@
+</// ------------------------------------------- ///>
+		  BACKEND STARTUP	
+</// ------------------------------------------- ///>
+
+Open the project "CEZ.LoymarkTechTest.sln" in Visual Studio.
+
+Set up "CEZ.LoymarkTechTest.WebAPI" as the startup project and restore NuGet packages if necessary.
+
+Open "appsettings.json" and change the connection string to point to your local DB if necessary.
+
+Go to Tools > NuGet Package Manager > Packet Manager Console. Run "update-database".
+
+The database should now have all the tables and seeded initial data.
+
+You can now run the project. A new browser window with a Swagger landing page should open
+(https://localhost:7202/swagger/index.html)
+
+The backend is done. Go to the front-end project to continue the set-up.
+
