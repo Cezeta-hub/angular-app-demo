@@ -36,7 +36,7 @@ namespace CEZ.LoymarkTechTest.WebAPI
             
             [Required]
             [MaxLength(3)]
-            public string Country { get; set; }
+            public string CountryCode { get; set; }
 
             [Required]
             public bool WishesToBeContacted { get; set; }
@@ -59,7 +59,7 @@ namespace CEZ.LoymarkTechTest.WebAPI
                     .NotEmpty().WithMessage("The surname can't be empty")
                     .MaximumLength(50).WithMessage("The surname can't be longer than 50 characters");
 
-                RuleFor(c => c.Country)
+                RuleFor(c => c.CountryCode)
                     .NotEmpty().WithMessage("The country code can't be empty")
                     .MaximumLength(50).WithMessage("The country code can't be longer than 3 characters")
                     .Must((inst, countryCode, context) =>
@@ -94,7 +94,7 @@ namespace CEZ.LoymarkTechTest.WebAPI
                     Active = true
                 };
 
-                user.Country = _db.Countries.First(x => x.Code == request.Country);
+                user.Country = _db.Countries.First(x => x.Code == request.CountryCode);
                 
                 // Update History
                 user.ChangeHistory.Add(new History()

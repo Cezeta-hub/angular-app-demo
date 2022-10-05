@@ -1,0 +1,105 @@
+<page-container title="Users">
+  <page-container-toolbar-right>
+    <p-button label="New User" icon="pi pi-plus" (onClick)="addNewUser($event)"></p-button>
+  </page-container-toolbar-right>
+  <loader-wrapper [loading]="loading" loadingText="Loading users...">
+    <p-table
+      dataKey="id"
+      [value]="users"
+      [paginator]="true"
+      [lazy]="true"
+      [rows]="filters.PageSize"
+      [totalRecords]="totalPages"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="Showing {first} of {totalRecords} pages"
+      (onLazyLoad)="search($event)"
+      responsiveLayout="scroll"
+      [sortField]="filters.OrderBy"
+      [sortOrder]="filters.Direction"
+    >
+      <ng-template pTemplate="caption">
+        <p-accordion>
+          <p-accordionTab header="Filters">
+            <div style="position: relative">
+              <div style="position: absolute; top: 0; right: 0;">
+                  <p-button label="Reset Filters" (onClick)="resetFilters()"></p-button>
+              </div>
+              <div class="grid">
+                <div class="col-6">
+                  <div class="row" class="form-field-label">Name</div>
+                  <div class="row">
+                    <input
+                      [(ngModel)]="filters.Name"
+                      style="width:100%"
+                      pInputText type="text"
+                      (change)="search()"
+                      placeholder="Filter by user's name..."
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </p-accordionTab>
+        </p-accordion>
+      </ng-template>
+      <ng-template pTemplate="header">
+          <tr>
+              <th pSortableColumn="Id" style="width: 5rem">Id <p-sortIcon field="Id"></p-sortIcon></th>
+              <th pSortableColumn="Name">Name <p-sortIcon field="Name"></p-sortIcon></th>
+              <th pSortableColumn="Surname">Surname <p-sortIcon field="Surname"></p-sortIcon></th>
+              <th pSortableColumn="Email">Email <p-sortIcon field="Email"></p-sortIcon></th>
+              <th pSortableColumn="Birthday">Date of Birth <p-sortIcon field="Birthday"></p-sortIcon></th>
+              <th pSortableColumn="Telephone">Telephone <p-sortIcon field="Telephone"></p-sortIcon></th>
+              <th>Country</th>
+              <th pSortableColumn="WishesToBeContacted">Wishes to be contacted? <p-sortIcon field="WishesToBeContacted"></p-sortIcon></th>
+              <th style="width: 10rem">Actions</th>
+          </tr>
+      </ng-template>
+        <ng-template pTemplate="body" let-user>
+          <ng-template [ngIf]="loading">
+            <tr>
+              <td style="width: 3rem"><p-skeleton></p-skeleton></td>
+              <td><p-skeleton></p-skeleton></td>
+              <td><p-skeleton></p-skeleton></td>
+              <td><p-skeleton></p-skeleton></td>
+              <td><p-skeleton></p-skeleton></td>
+              <td><p-skeleton></p-skeleton></td>
+              <td><p-skeleton></p-skeleton></td>
+              <td><p-skeleton></p-skeleton></td>
+              <td style="width: 10rem"><p-skeleton></p-skeleton></td>
+            </tr>
+          </ng-template>
+          <ng-template [ngIf]="!loading">
+            <tr class="table-row">
+              <td style="width: 3rem">{{user.Id}}</td>
+              <td>{{user.Name}}</td>
+              <td>{{user.Surname}}</td>
+              <td>{{user.Email}}</td>
+              <td>{{user.Birthday | date: "YYYY-MM-dd"}}</td>
+              <td>{{user.Telephone}}</td>
+              <td>{{user.Country.Name}}</td>
+              <td>{{user.WishesToBeContacted ? 'Yes' : 'No'}}</td>
+              <td style="width: 10rem">
+                <div style="display: flex; justify-content: space-evenly;" >
+                  <p-button aria-label="Edit" aria-label="Edit User" class="p-button-sm" icon="pi pi-pencil" (onClick)="editUser(user)"></p-button>
+                  <p-button aria-label="Delete User" tooltipPosition="left" class="p-button-sm p-button-danger" icon="pi pi-trash" (onClick)="deleteUser(user.Id)"></p-button>
+                </div>
+              </td>
+          </tr>
+        </ng-template>
+      </ng-template>
+      <ng-template pTemplate="emptymessage" [ngIf]="!loading">
+        <tr>
+          <td colspan="9" style="text-align: center;">
+            No Users found.
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </loader-wrapper>
+</page-container>
+
+<p-confirmDialog header="Confirm deletion" icon="pi pi-exclamation-triangle"
+  acceptLabel="Delete"
+  rejectLabel="Cancel" rejectButtonStyleClass="p-button-secondary"
+></p-confirmDialog>

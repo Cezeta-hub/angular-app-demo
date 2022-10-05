@@ -1,0 +1,10 @@
+
+
+<div class="page-container">
+    <h2 class="page-title">{{ title }}</h2>
+    <ng-content select="['page-container-toolbar-right']"></ng-content>
+  </div>
+<ng-content ></ng-content>
+<ngx-spinner name="primary" type="ball-clip-rotate-multiple">
+  <div class="loader-message">{{loadingText + '...'}}</div>
+</ngx-spinner>

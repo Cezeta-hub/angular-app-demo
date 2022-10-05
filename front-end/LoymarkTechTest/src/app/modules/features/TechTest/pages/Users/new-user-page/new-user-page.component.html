@@ -1,0 +1,114 @@
+<page-container [title]="editMode ? 'Edit User' : 'Ner User'">
+  <page-container-toolbar-right>
+      <button pButton type="button" [disabled]="!canSave()" label="Save" icon="pi pi-save" (click)="onSave($event)"></button>
+      <button pButton type="button" style="margin-left: 5px;" label="Cancel" icon="pi pi-times" class="p-button-secondary" (click)="onCancel()"></button>
+  </page-container-toolbar-right>
+  <loader-wrapper [loading]="loading || saving" [loadingText]="loading ? 'Loading information...' : 'Saving...'">
+    <p-card>
+      <ng-template pTemplate="title">
+        Basic Information
+      </ng-template>
+
+      <form [formGroup]="form">
+        <div class="grid">
+          <div class="col-6">
+            <div class="row" class="form-field-label">Name</div>
+            <div class="row">
+              <input
+                formControlName="name"
+                maxlength="50"
+                style="width:100%"
+                pInputText type="text"
+                placeholder="e.g. John"
+              />
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="row" class="form-field-label">Country</div>
+            <div class="row">
+              <p-dropdown appendTo="body"
+                [options]="countryOptions"
+                [(ngModel)]="selectedCountry"
+                optionLabel="Name" optionValue="Id"
+                [ngModelOptions]="{standalone: true}"
+                placeholder="Select a country..."
+              ></p-dropdown>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="row" class="form-field-label">Surname</div>
+            <div class="row">
+              <input
+                formControlName="surname"
+                maxlength="50"
+                style="width:100%"
+                pInputText type="text"
+                placeholder="e.g. Smith"
+              />
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="row" class="form-field-label">Date of Birth</div>
+            <div class="row">
+              <p-calendar placeholder="Date of Birth" appendTo="body"
+                dateFormat="dd-mm-yy"
+                formControlName="birthday"
+                [showIcon]="true"
+              ></p-calendar>
+            </div>
+          </div>
+        </div>
+      </form>
+    </p-card>
+
+    <div style="margin-top: 10px;">
+      <p-card>
+        <ng-template pTemplate="title">
+          Contact Information
+        </ng-template>
+
+        
+          <div class="grid">
+            <div class="col-6">
+              <form [formGroup]="form">
+                <div class="row" class="form-field-label">Email</div>
+                <div class="row">
+                  <input
+                    formControlName="email"
+                    maxlength="50"
+                    style="width:100%"
+                    pInputText type="text"
+                    placeholder="e.g. jsmith@provider.com"
+                  />
+                </div>
+              </form>
+            </div>
+            <div class="col-6">
+              <form [formGroup]="form">
+                <div class="row" class="form-field-label">Telephone</div>
+                <div class="row">
+                  <p-inputNumber
+                    formControlName="telephone"
+                    [useGrouping]="false"
+                    placeholder="e.g. 5555123456"
+                  ></p-inputNumber>
+                </div>
+              </form>
+            </div>
+            <div class="col-6">
+              <div class="row" class="form-field-label">
+                <span style="margin-right: 15px">Wishes to be contacted</span>
+                <p-checkbox [(ngModel)]="wishesContact" [binary]="true"></p-checkbox>
+              </div>
+            </div>
+          </div>
+      </p-card>
+    </div>
+  </loader-wrapper>
+
+</page-container>
+
+<p-confirmDialog header=" " icon="pi pi-exclamation-triangle"
+  acceptLabel="Ok"
+  rejectLabel="Cancel" rejectButtonStyleClass="p-button-secondary"
+></p-confirmDialog>

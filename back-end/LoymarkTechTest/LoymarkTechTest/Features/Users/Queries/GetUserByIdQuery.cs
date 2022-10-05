@@ -50,9 +50,9 @@ namespace CEZ.LoymarkTechTest.WebAPI
             public Validator(Context db)
             {
                 RuleFor(q => q.Id)
-                    .MustAsync(async (userId, cancelToken) =>
+                    .Must((inst, userId, context) =>
                     {
-                        return await db.Users.AnyAsync(rt => rt.Id == userId);
+                        return db.Users.Any(x => x.Id == userId);
                     }).WithMessage("User not found");
             }
 
