@@ -7,6 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Net.Mail;
+using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
@@ -51,23 +53,40 @@ namespace CEZ.LoymarkTechTest.WebAPI
         {
             public Validator(Context db)
             {
-                RuleFor(c => c.Name)
-                    .NotEmpty().WithMessage("The name can't be empty")
+                RuleFor(x => x.Name)
+                    .NotEmpty().NotNull().WithMessage("The name can't be empty")
+                    .Must(new Regex("^[a-zA-Z\\s]+$").IsMatch).WithMessage("The name can't contain numbers or special symbols")
                     .MaximumLength(50).WithMessage("The name can't be longer than 50 characters");
                 
-                RuleFor(c => c.Surname)
-                    .NotEmpty().WithMessage("The surname can't be empty")
+                RuleFor(x => x.Surname)
+                    .NotEmpty().NotNull().WithMessage("The surname can't be empty")
+                    .Must(new Regex("^[a-zA-Z\\s]+$").IsMatch).WithMessage("The surname can't contain numbers or special symbols")
                     .MaximumLength(50).WithMessage("The surname can't be longer than 50 characters");
-
-                RuleFor(c => c.CountryCode)
+                    
+                RuleFor(x => x.CountryCode)
                     .NotEmpty().WithMessage("The country code can't be empty")
+                    .Must(x => x.Length == 3).WithMessage("The country code must have 3 letters")
+                    .Must(new Regex("^[A-Z]+$").IsMatch).WithMessage("The country code must be capital letters")
                     .MaximumLength(50).WithMessage("The country code can't be longer than 3 characters")
                     .Must((inst, countryCode, context) =>
                      {
                          return db.Countries.Any(c => c.Code.ToLower() == countryCode.ToLower());
                      }).WithMessage("Country not found");
 
-                // Add Validator for Email, Date
+                RuleFor(x => x.Email)
+                    .NotEmpty().NotNull().WithMessage("The email can't be empty")
+                    .Must((inst, email, context) =>
+                    {
+                        try
+                        {
+                            email = new MailAddress(email).Address;
+                            return true;
+                        }
+                        catch (FormatException) { return false; }
+                    }).WithMessage("The email is not valid");
+
+                RuleFor(x => x.Birthday)
+                    .NotEmpty().NotNull().WithMessage("The date of birth can't be empty");
             }
         }
 

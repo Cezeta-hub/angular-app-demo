@@ -7,6 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Net.Mail;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -32,7 +34,7 @@ namespace CEZ.LoymarkTechTest.WebAPI
             public int? Telephone { get; set; }
 
             [MaxLength(3)]
-            public string? Country { get; set; }
+            public string? CountryCode { get; set; }
 
             public bool? WishesToBeContacted { get; set; }
         }
@@ -59,6 +61,48 @@ namespace CEZ.LoymarkTechTest.WebAPI
                         else
                             return true;
                     }).WithMessage("User is not active");
+
+                RuleFor(x => x.Name)
+                    .Must((inst, name, context) =>
+                    {
+                        if (name == null) return true;
+                        return new Regex("^[a-zA-Z\\s]+$").IsMatch(name);
+                    }).WithMessage("The name can't contain numbers or special symbols")
+                    .MaximumLength(50).WithMessage("The name can't be longer than 50 characters");
+
+                RuleFor(x => x.Surname)
+                    .Must((inst, surname, context) =>
+                    {
+                        if (surname == null) return true;
+                        return new Regex("^[a-zA-Z\\s]+$").IsMatch(surname);
+                    }).WithMessage("The surname can't contain numbers or special symbols")
+                    .MaximumLength(50).WithMessage("The surname can't be longer than 50 characters");
+
+                RuleFor(x => x.CountryCode)
+                    .Must(x => x.Length == 3).WithMessage("The country code must have 3 letters")
+                    .Must((inst, countryCode, context) =>
+                    {
+                        if (countryCode == null) return true;
+                        return new Regex("^[A-Z]+$").IsMatch(countryCode);
+                    }).WithMessage("The country code must be capital letters")
+                    .MaximumLength(50).WithMessage("The country code can't be longer than 3 characters")
+                    .Must((inst, countryCode, context) =>
+                    {
+                        if (countryCode == null) return true;
+                        return db.Countries.Any(c => c.Code.ToLower() == countryCode.ToLower());
+                    }).WithMessage("Country not found");
+
+                RuleFor(x => x.Email)
+                    .Must((inst, email, context) =>
+                    {
+                        if (email == null) return true;
+                        try
+                        {
+                            email = new MailAddress(email).Address;
+                            return true;
+                        }
+                        catch (FormatException) { return false; }
+                    }).WithMessage("The email is not valid");
             }
         }
 
@@ -87,9 +131,9 @@ namespace CEZ.LoymarkTechTest.WebAPI
                     user.Email = request.Email;
                 if (request.Telephone != null)
                     user.Telephone = request.Telephone;
-                if (!String.IsNullOrEmpty(request.Country))
+                if (!String.IsNullOrEmpty(request.CountryCode))
                 {
-                    var country = _db.Countries.Single(x => x.Code == request.Country);
+                    var country = _db.Countries.Single(x => x.Code == request.CountryCode);
                     user.Country = country;
                     user.CountryId = country.Id;
                 }
