@@ -77,6 +77,7 @@
                     formControlName="email"
                     maxlength="50"
                     style="width:100%"
+                    pattern=".+@.+\.(?:[a-z]{2,3})(?:\.[a-z]{2,3})?"
                     pInputText type="text"
                     placeholder="e.g. jsmith@provider.com"
                   />
@@ -87,11 +88,13 @@
               <form [formGroup]="form">
                 <div class="row" class="form-field-label">Telephone</div>
                 <div class="row">
-                  <p-inputNumber
+                  <input
                     formControlName="telephone"
-                    [useGrouping]="false"
+                    maxlength="50"
+                    pattern="(?:^\+)?[0-9 ()-]+"
+                    pInputText type="text"
                     placeholder="e.g. 5555123456"
-                  ></p-inputNumber>
+                  />
                 </div>
               </form>
             </div>
