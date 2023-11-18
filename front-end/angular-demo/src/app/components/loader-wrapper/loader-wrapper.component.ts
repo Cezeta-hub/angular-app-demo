@@ -12,6 +12,7 @@ export class LoaderWrapperComponent implements OnInit, OnChanges {
   @Input() loadingText: string = "";
   @Input() loading: boolean = false;
   @Input() fullScreen: boolean = false;
+  
   constructor(private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {

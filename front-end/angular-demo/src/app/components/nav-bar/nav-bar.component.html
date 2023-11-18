@@ -2,7 +2,7 @@
     <div class="p-toolbar-group-left">
         <p-button type="button" class="mr-2" (click)="changeDrawer()" icon="pi pi-bars"></p-button>
         <div style="padding-right: 10px"></div>
-        <p-image src="assets/icons/angular-menu.svg" alt="Angular logo" width="225px" class="mr-3"></p-image>
+        <p-image src="assets/icons/angular-menu.svg" alt="Angular logo" width="150px" class="mr-3"></p-image>
     </div>
 
     <div class="p-toolbar-group-right">
@@ -10,11 +10,14 @@
     </div>
 </p-toolbar>
 
-<p-sidebar [style]="{'padding': '0px'}" class="side-nav" [(visible)]="visibleSidebar1" appendTo="body">
-    <div class="flex align-items-center justify-content-center" style="height: 50px; margin-top: 20px; margin-bottom: 10px;">
+<p-sidebar [style]="{'padding': '0px'}" class="side-nav" [(visible)]="isSidebarVisible" appendTo="body">
+    <div 
+        class="flex align-items-center justify-content-center" 
+        style="height: 50px; margin-top: 20px; margin-bottom: 10px;"
+    >
         <p-image src="assets/icons/angular-logo.png" alt="Angular logo" width="25px" class="mr-1"></p-image>
         <h2 class="menu-title">Menu</h2>
     </div>
     <p-divider [style]="{'z-index': '1000'}" align="center"></p-divider>
-    <p-menu [autoZIndex]="false" [model]="menu"></p-menu >
+    <p-menu [autoZIndex]="false" [model]="menu"></p-menu>
 </p-sidebar>

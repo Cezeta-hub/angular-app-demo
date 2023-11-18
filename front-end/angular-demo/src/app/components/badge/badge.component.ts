@@ -3,17 +3,20 @@ import { HelperService } from 'src/app/globalServices/helper.service';
 
 @Component({
   selector: 'badge',
-  templateUrl: './badge.component.html',
-  styleUrls: ['./badge.component.css']
+  template: `
+    <p-tag [value]="text" [icon]="iconName" [ngClass]="classNames"></p-tag>
+  `
 })
 export class BadgeComponent implements OnInit {
-
-  constructor(private helperService: HelperService) { }
+  public classNames: string = "";
+  public iconName: string = "";
+  
   @Input() classes?: string = "";
   @Input() text: string = "";
   @Input() icon?: string = "";
-  public classNames: string = "";
-  public iconName: string = "";
+  
+  constructor(private helperService: HelperService) { }
+
   ngOnInit(): void {
     if(!this.classes) {
       this.classNames = this.helperService.GetClass(this.text);

@@ -1,0 +1,28 @@
+/* ::ng-deep p-inputnumber {
+  width: 100%
+}
+::ng-deep p-inputnumber > span {
+  width: 100%
+}
+
+.form-field-label {
+  text-align: left;
+  padding: 0.5rem 0rem;
+  font-weight: 600;
+  color: #495057;
+}
+
+tr.table-row > td {
+  padding: 0.2rem 1rem;
+}
+
+.badge {
+  font-size: 1rem;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  color: white;
+  background-color: var(--blue-900);
+  border: 1px solid var(--blue-900);
+  border-radius: 50%;
+} */
