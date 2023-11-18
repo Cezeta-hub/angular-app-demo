@@ -2,9 +2,9 @@
 		  BACKEND STARTUP	
 </// ------------------------------------------- ///>
 
-Open the project "CEZ.LoymarkTechTest.sln" in Visual Studio.
+Open the project "CEZ.AngularDemo.sln" in Visual Studio.
 
-Set up "CEZ.LoymarkTechTest.WebAPI" as the startup project and restore NuGet packages if necessary.
+Set up "CEZ.AngularDemo.WebAPI" as the startup project and restore NuGet packages if necessary.
 
 Open "appsettings.json" and change the connection string to point to your local DB if necessary.
 

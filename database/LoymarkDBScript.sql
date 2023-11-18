@@ -1,1 +1,0 @@
-CREATE DATABASE CEZ_LoymarkTechTest;
