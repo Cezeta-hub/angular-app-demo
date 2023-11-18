@@ -2,7 +2,7 @@
 		  FRONTEND STARTUP	
 </// ------------------------------------------- ///>
 
-Open the folder "LoymarkTechTest" with VSCode (or similar).
+Open the folder "angular-demo" with VSCode (or similar).
 
 Open the console (in VSCode, Ctrl+Ñ).
 

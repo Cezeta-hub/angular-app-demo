@@ -1,0 +1,51 @@
+html,
+body {
+    min-height: 100vh;
+    margin: 0px;
+    padding: 0px;
+}
+
+div.content > .ng-star-inserted {
+    width: 100%;
+}
+
+p-inputnumber {
+    width: 100%;
+}
+.p-component.p-inputtext {
+    width: 100%
+}
+.p-inputnumber.p-component {
+    width: 100%
+}
+.p-autocomplete.p-component {
+    width: 100%
+}
+
+p-dropdown {
+    width: 100%;
+}
+.p-dropdown.p-component {
+    width: 100%;
+}
+p-multiselect {
+    width: 100%;
+}
+.p-multiselect.p-component {
+    width: 100%;
+}
+p-calendar {
+    width: 100%;
+}
+.p-calendar {
+    width: 100%;
+}
+.required:after {
+    content:" *";
+    color: red;
+}
+
+.highlighted-row > td{
+    /* background: #f9db8894; */
+    background-color: #b5ddee;
+}
