@@ -2,7 +2,9 @@
 
 ## Description
 
-Simple Angular13 project to showcase the technology. 
+Simple Angular13 project to showcase the technology. Backend was made using .Net 6 and Entity Framework (code-first) to manage the database.
+
+It features a simple Users CRUD page, with soft deletion. Deleted Users appear in the History page.
 
 ## Instructions
 
