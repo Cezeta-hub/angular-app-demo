@@ -3,12 +3,7 @@ using CEZ.AngularDemo.WebAPI.Infrastructure.Utils.Enums;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace CEZ.AngularDemo.WebAPI
 {
