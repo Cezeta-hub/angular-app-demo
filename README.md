@@ -8,13 +8,13 @@ Backend was made using .Net 6 and Entity Framework (code-first) to manage the da
 
 ## Screenshots
 
-![image](/assets/73889711/52e6ae09-ecc0-4738-bb50-ea00282c218d)
+![image](https://github.com/Cezeta-hub/angular-app-demo/assets/73889711/969cc526-2e26-420f-abff-87a42768088d)
 
-![image](/assets/73889711/11ec56fb-adf3-4935-a232-a785c4d0ebe4)
+![image](https://github.com/Cezeta-hub/angular-app-demo/assets/73889711/cffdf8b7-cc1d-4e93-84eb-725096c0b31b)
 
-![image](https://github.com/Cezeta-hub/angular-app-demo/assets/73889711/9442242a-2bea-4f5c-8072-eb15c6d18bfd)
+![image](https://github.com/Cezeta-hub/angular-app-demo/assets/73889711/5a79f05b-25a7-4007-bb2e-27dfcb15c25e)
 
-![image](https://github.com/Cezeta-hub/angular-app-demo/assets/73889711/6306afc3-5912-44e3-8074-86b1665ba1de)
+![image](https://github.com/Cezeta-hub/angular-app-demo/assets/73889711/76a65e51-d7dc-4342-8ec8-f7cf6bf30c2d)
 
 ## Instructions
 
