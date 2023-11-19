@@ -2,9 +2,9 @@
 
 ## Description
 
-Simple Angular13 project to showcase the technology. Backend was made using .Net 6 and Entity Framework (code-first) to manage the database.
+Simple Angular13 project to showcase the technology. It features a simple Users CRUD page, with soft deletion. Deleted Users appear in the History page.
 
-It features a simple Users CRUD page, with soft deletion. Deleted Users appear in the History page.
+Backend was made using .Net 6 and Entity Framework (code-first) to manage the database. It features a Mediator structure, where received queries are managed by MediatR and divided between Commands and Queries, separating responsibilities. Data input validation is done using FluentValidation.
 
 ## Instructions
 
