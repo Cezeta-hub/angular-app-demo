@@ -2,9 +2,19 @@
 
 ## Description
 
-Simple Angular13 project to showcase the technology. It features a simple Users CRUD page, with soft deletion. Deleted Users appear in the History page.
+Simple Angular13 project to showcase the technology. It features a simple Users CRUD page, with soft deletion. Changes to Users are logged into the History page.
 
 Backend was made using .Net 6 and Entity Framework (code-first) to manage the database. It features a Mediator structure, where received queries are managed by MediatR and divided between Commands and Queries, separating responsibilities. Data input validation is done using FluentValidation.
+
+## Screenshots
+
+![image](https://github.com/Cezeta-hub/angular-app-demo/assets/73889711/52e6ae09-ecc0-4738-bb50-ea00282c218d)
+
+![image](https://github.com/Cezeta-hub/angular-app-demo/assets/73889711/11ec56fb-adf3-4935-a232-a785c4d0ebe4)
+
+![image](https://github.com/Cezeta-hub/angular-app-demo/assets/73889711/9442242a-2bea-4f5c-8072-eb15c6d18bfd)
+
+![image](https://github.com/Cezeta-hub/angular-app-demo/assets/73889711/6306afc3-5912-44e3-8074-86b1665ba1de)
 
 ## Instructions
 
