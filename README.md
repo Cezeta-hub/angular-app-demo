@@ -2,6 +2,8 @@
 
 ## Description
 
+Simple Angular13 project to showcase the technology. 
+
 ## Instructions
 
  1. Database
