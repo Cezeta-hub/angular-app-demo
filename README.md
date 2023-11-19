@@ -5,6 +5,7 @@
 ## Instructions
 
  1. Database
+    
     This project's database is created and managed using EntityFramework.
     This means that we will create all the tables and fill in the seeded data automatically using the different migrations set on the back-end side. For now we only need to create an empty DB named "CEZ_AngularDemoDB" on your local server.
     A simple "CREATE DATABASE CEZ_AngularDemoDB;" will suffice (a sql script file is also provided, for ease of use).
